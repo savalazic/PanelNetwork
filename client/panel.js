@@ -15,9 +15,17 @@ import PhotoGrid from './components/PhotoGrid';
 import Raven from 'raven-js';
 import { sentry_url } from './data/config';
 
-// import './../playground/firebase/index';
+import firebase from './firebase/index';
 
 Raven.config(sentry_url).install();
+
+firebase.auth().onAuthStateChanged((user) => {
+	if (user) {
+		history.push('/index');
+	} else {
+		history.push('/');
+	}
+});
 
 const router = (
 	<Provider store={store}>

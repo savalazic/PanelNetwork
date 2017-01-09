@@ -1,4 +1,4 @@
-import firebase, { firebaseRef, githubProvider } from '../firebase/index';
+import firebase, { firebaseRef, githubProvider, facebookProvider } from '../firebase/index';
 
 // add post
 export function addPost (display_src, caption) {
