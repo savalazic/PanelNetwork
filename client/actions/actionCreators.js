@@ -1,4 +1,4 @@
-import firebase, { firebaseRef } from '../firebase/index';
+import firebase, { firebaseRef, githubProvider } from '../firebase/index';
 
 // add post
 export function addPost (display_src, caption) {
@@ -38,8 +38,20 @@ export function removeComment (postId, i) {
 	}
 }
 
-export var startAddTodo = (text) => {
+export var startLogin = () => {
 	return (dispatch, getState) => {
+		return firebase.auth().signInWithPopup(githubProvider).then((result) => {
+			console.log('auth worked', result);
+		}, (error) => {
+			console.log('unable to auth', error);
+		});
+	};
+};
 
+export var startLogout = () => {
+	return (dispatch, getState) => {
+		return firebase.auth().signOut().then(() => {
+			console.log('Logged out!');
+		});
 	};
 };
